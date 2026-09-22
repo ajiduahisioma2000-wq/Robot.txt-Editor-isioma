@@ -1,13 +1,8 @@
-/* MY CSS */
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
-
-/* BODY */
 
 body {
     min-height: 100vh;
@@ -20,18 +15,12 @@ body {
     padding: 40px 50px;
 }
 
-
-/* MAIN APP */
-
 .app {
     width: 100%;
     max-width: 1250px;
 
     margin: 0 auto;
 }
-
-
-/*  HEADER */
 
 .app-header {
     margin-bottom: 30px;
@@ -53,9 +42,6 @@ body {
     line-height: 1.5;
 }
 
-
-/* WORKSPACE */
-
 .workspace {
     display: flex;
 
@@ -72,9 +58,6 @@ body {
         0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
-
-/* LEFT — EDITOR PANEL */
-
 .editor-panel {
     width: 65%;
 
@@ -85,9 +68,6 @@ body {
     border-right: 1px solid #272a31;
 }
 
-
-/* RIGHT — TESTER PANEL */
-
 .tester-panel {
     width: 35%;
 
@@ -95,9 +75,6 @@ body {
 
     background: #0e1014;
 }
-
-
-/* PANEL HEADINGS */
 
 .editor-panel h2,
 .tester-panel h2 {
@@ -112,9 +89,6 @@ body {
     margin-bottom: 8px;
 }
 
-
-/* TESTER DESCRIPTION */
-
 .tester-description {
     color: #777d87;
 
@@ -124,9 +98,6 @@ body {
 
     margin-bottom: 25px;
 }
-
-
-/* EDITOR */
 
 .editor-wrapper {
     position: relative;
@@ -142,9 +113,6 @@ body {
 
     border-radius: 9px;
 }
-
-
-/* HIGHLIGHT + TEXTAREA */
 
 #highlight-content,
 #editor {
@@ -168,17 +136,11 @@ body {
     overflow: auto;
 }
 
-
-/* HIGHLIGHT LAYER */
-
 #highlight-content {
     color: #e6e8eb;
 
     pointer-events: none;
 }
-
-
-/* TEXTAREA */
 
 #editor {
     background: transparent;
@@ -193,17 +155,11 @@ body {
     outline: none;
 }
 
-
-/* PLACEHOLDER */
-
 #editor::placeholder {
     color: #59606b;
 
     opacity: 1;
 }
-
-
-/* EDITOR SCROLLBAR */
 
 #editor::-webkit-scrollbar,
 #highlight-content::-webkit-scrollbar {
@@ -226,9 +182,6 @@ body {
 #highlight-content::-webkit-scrollbar-thumb:hover {
     background: #444a54;
 }
-
-
-/* SYNTAX HIGHLIGHTING */
 
 .comment {
     color: #666d78;
@@ -256,9 +209,6 @@ body {
     color: #e4e7eb;
 }
 
-
-/* LABELS */
-
 label {
     display: block;
 
@@ -270,9 +220,6 @@ label {
     font-size: 13px;
     font-weight: 600;
 }
-
-
-/* INPUT + SELECT */
 
 input,
 select {
@@ -299,9 +246,6 @@ select {
         box-shadow 0.2s ease;
 }
 
-
-/* Focus effect */
-
 input:focus,
 select:focus {
     border-color: #4da6ff;
@@ -310,15 +254,9 @@ select:focus {
         0 0 0 3px rgba(77, 166, 255, 0.10);
 }
 
-
-/* Select arrow area */
-
 select {
     cursor: pointer;
 }
-
-
-/* TEST BUTTON */
 
 button {
     width: 100%;
@@ -346,9 +284,6 @@ button {
         box-shadow 0.2s ease;
 }
 
-
-/* Hover */
-
 button:hover {
     background: #358fe8;
 
@@ -356,15 +291,9 @@ button:hover {
         0 8px 20px rgba(77, 166, 255, 0.15);
 }
 
-
-/* Click */
-
 button:active {
     transform: scale(0.98);
 }
-
-
-/* RESULT BOX */
 
 #result-box {
     display: flex;
@@ -401,9 +330,6 @@ button:active {
         border-color 0.3s ease;
 }
 
-
-/* RESPONSIVE DESIGN */
-
 @media (max-width: 900px) {
 
     body {
@@ -429,9 +355,6 @@ button:active {
         height: 450px;
     }
 }
-
-
-/* MOBILE */
 
 @media (max-width: 600px) {
 

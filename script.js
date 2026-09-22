@@ -6,11 +6,6 @@ const botSelect = document.querySelector("#bot-select");
 const testButton = document.querySelector("#test-btn");
 const resultBox = document.querySelector("#result-box");
 
-
-// DEVELOPER A — TEXT EDITOR
-
-// This function changes special HTML characters
-// so the user's input is displayed safely.
 function escapeHTML(text) {
     return text
         .replaceAll("&", "&amp;")
@@ -18,10 +13,6 @@ function escapeHTML(text) {
         .replaceAll(">", "&gt;");
 }
 
-
-// Reset the result box back to its empty state.
-// Used whenever the rules, bot, or test path change,
-// so a stale BLOCKED/ALLOWED never lingers on screen.
 function resetResult() {
 
     resultBox.textContent = "RESULT";
@@ -31,29 +22,24 @@ function resetResult() {
 }
 
 
-// Highlight the robots.txt text
 function highlightText() {
 
     const text = editor.value;
 
-    // Break the entire text into individual lines
     const lines = text.split("\n");
 
     let html = "";
 
-    // Go through every line
     for (let i = 0; i < lines.length; i++) {
 
         const line = lines[i];
 
-        // Check for comments
         if (line.startsWith("#")) {
 
             html += `<span class="comment">${escapeHTML(line)}</span>`;
 
         }
 
-        // Check for User-agent
         else if (line.toLowerCase().startsWith("user-agent:")) {
 
             const parts = line.split(":");
@@ -67,7 +53,6 @@ function highlightText() {
 
         }
 
-        // Check for Disallow
         else if (line.toLowerCase().startsWith("disallow:")) {
 
             const parts = line.split(":");
@@ -81,7 +66,6 @@ function highlightText() {
 
         }
 
-        // Check for Allow
         else if (line.toLowerCase().startsWith("allow:")) {
 
             const parts = line.split(":");
@@ -95,29 +79,22 @@ function highlightText() {
 
         }
 
-        // Normal line
         else {
 
             html += escapeHTML(line);
         }
 
-        // Add the line break back
         html += "<br>";
     }
 
-    // Put the styled HTML into the backdrop
     highlightContent.innerHTML = html;
 
-    // Rules changed, so any previous test result is now stale
     resetResult();
 }
 
 
-// Run highlighting whenever the user types
 editor.addEventListener("input", highlightText);
 
-
-// DEVELOPER A — SCROLL SYNCHRONIZATION
 
 editor.addEventListener("scroll", function () {
 
@@ -127,20 +104,11 @@ editor.addEventListener("scroll", function () {
 });
 
 
-// Run once when the page loads
 highlightText();
 
-
-// DEVELOPER B — ROBOTS.TXT CHECKER
-
-// Reset the result whenever the bot or test path changes,
-// since a stale result for the wrong bot/path is misleading
 botSelect.addEventListener("change", resetResult);
 testUrl.addEventListener("input", resetResult);
 
-
-// Let the user press Enter in the test path field
-// instead of having to click the button every time
 testUrl.addEventListener("keydown", function (event) {
 
     if (event.key === "Enter") {
@@ -152,35 +120,23 @@ testUrl.addEventListener("keydown", function (event) {
 
 testButton.addEventListener("click", function () {
 
-    // Get the robots.txt text
     const robotsText = editor.value;
 
-    // Get the URL/path the user wants to test
     const testPath = testUrl.value.trim();
 
-    // Get the selected bot
     const selectedBot = botSelect.value;
 
-    // Break robots.txt into individual lines
     const lines = robotsText.split("\n");
 
-    // This tells us whether we have found
-    // the correct User-agent section
     let insideSection = false;
 
-    // This tells us whether a matching
-    // Disallow rule was found
     let blocked = false;
 
-
-    // GO THROUGH EVERY LINE
 
     for (let i = 0; i < lines.length; i++) {
 
         const line = lines[i].trim();
 
-
-        // FIND THE SELECTED BOT
 
         if (line.toLowerCase().startsWith("user-agent:")) {
 
@@ -193,26 +149,19 @@ testButton.addEventListener("click", function () {
                 continue;
             }
 
-            // A different User-agent line means we've left
-            // the section we were reading (if any)
             insideSection = false;
 
             continue;
         }
 
 
-        // IF WE ARE INSIDE THE BOT'S SECTION
-
         if (insideSection) {
 
 
-            // Stop when we reach a blank line
             if (line === "") {
                 break;
             }
 
-
-            // CHECK DISALLOW
 
             if (line.toLowerCase().startsWith("disallow:")) {
 
@@ -221,11 +170,8 @@ testButton.addEventListener("click", function () {
                 const rulePath = parts.slice(1).join(":").trim();
 
 
-                // Ignore an empty Disallow rule
                 if (rulePath !== "") {
 
-                    // Check whether the test path
-                    // starts with the blocked path
                     if (testPath.startsWith(rulePath)) {
 
                         blocked = true;
@@ -237,8 +183,6 @@ testButton.addEventListener("click", function () {
         }
     }
 
-
-    // UPDATE RESULT
 
     if (blocked) {
 
